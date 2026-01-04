@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo Agent AI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f7f7f7;
+    }
+    .card {
+      background: #fff;
+      max-width: 720px;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    h1 { margin-top: 0; }
+    .muted { color: #666; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Demo Agent AI de Suport</h1>
+    <p class="muted">
+      Acesta este un site provizoriu public (GitHub Pages).
+    </p>
+    <p>
+      Agentul AI apare în colțul din dreapta jos.  
+      Întreabă despre program, contact sau o problemă tehnică.
+    </p>
+  </div>
+
+  <!-- Chatbase widget -->
+  <script>
+  (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="NRRqNgF6wUjb6EGIy37gg";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+  </script>
+
+</body>
+</html>
