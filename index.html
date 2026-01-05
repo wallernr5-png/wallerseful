@@ -12,11 +12,16 @@
       background: #f7f7f7;
     }
 
+    /* Imagine mare sus */
     .hero-img {
       width: 100%;
-      height: 90vh;
+      max-height: 90vh;
       object-fit: cover;
       display: block;
+    }
+
+    .container {
+      padding: 40px;
     }
 
     .card {
@@ -25,59 +30,44 @@
       padding: 24px;
       border-radius: 12px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      margin: -80px auto 40px auto;
-      position: relative;
-      z-index: 2;
     }
 
-    h1 { margin-top: 0; }
-    .muted { color: #666; }
+    h1 {
+      margin-top: 0;
+    }
+
+    .muted {
+      color: #666;
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- Imagine mare -->
-  <img src="waller.jpg" alt="Waller Metin2" class="hero-img">
+  <!-- IMAGINEA MARE -->
+  <img src="prime.jpg.jpg" alt="Waller Metin2" class="hero-img">
 
-  <!-- Card text -->
-  <div class="card">
-    <h1>Demo Agent AI – Waller</h1>
-    <p class="muted">
-      Acesta este un site provizoriu public (GitHub Pages).
-    </p>
-    <p>
-      Agentul AI apare în colțul din dreapta jos.<br>
-      Întreabă despre Waller, dueluri, realizări sau momente legendare.
-    </p>
+  <div class="container">
+    <div class="card">
+      <h1>Demo Agent AI de Suport</h1>
+
+      <p class="muted">
+        Acesta este un site provizoriu public (GitHub Pages).
+      </p>
+
+      <p>
+        Agentul AI apare în colțul din dreapta jos.  
+        Întreabă despre program, lore-ul lui Waller sau momente legendare din Metin2.
+      </p>
+    </div>
   </div>
 
   <!-- Chatbase widget -->
   <script>
   (function(){
-    if(!window.chatbase||window.chatbase("getState")!=="initialized"){
+    if(!window.chatbase || window.chatbase("getState")!=="initialized"){
       window.chatbase=(...arguments)=>{
         if(!window.chatbase.q){window.chatbase.q=[]}
         window.chatbase.q.push(arguments)
       };
-      window.chatbase=new Proxy(window.chatbase,{
-        get(target,prop){
-          if(prop==="q"){return target.q}
-          return(...args)=>target(prop,...args)
-        }
-      })
-    }
-    const onLoad=function(){
-      const script=document.createElement("script");
-      script.src="https://www.chatbase.co/embed.min.js";
-      script.id="NRRqNgF6wUjb6EGIy37gg";
-      script.domain="www.chatbase.co";
-      document.body.appendChild(script)
-    };
-    if(document.readyState==="complete"){onLoad()}
-    else{window.addEventListener("load",onLoad)}
-  })();
-  </script>
-
-</body>
-</html>
+      window.chatbase=new Proxy(window.chatbase
