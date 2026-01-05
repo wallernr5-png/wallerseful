@@ -6,105 +6,95 @@
   <title>Waller – Legendă Metin2</title>
 
   <style>
-    /* RESET */
-    body {
-      margin: 0;
+    body{
+      margin:0;
       font-family: Arial, sans-serif;
-      background: #f7f7f7;
+      background:#f7f7f7;
     }
 
-    /* IMAGINEA MARE (HERO) */
-    .hero-img {
-      width: 100%;
-      height: 90vh;
-      object-fit: cover;
-      display: block;
-      position: relative;
-      z-index: 1;
+    /* Layout: imagine stânga, text dreapta */
+    .wrap{
+      display:flex;
+      gap:24px;
+      padding:24px;
+      align-items:flex-start;
     }
 
-    /* CARD TEXT */
-    .container {
-      padding: 40px;
-      display: flex;
-      justify-content: center;
+    .imgbox{
+      flex: 0 0 420px;         /* lățimea zonei cu imaginea */
+      background:#000;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
     }
 
-    .card {
-      background: #fff;
-      max-width: 720px;
-      padding: 24px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    /* IMPORTANT: să se vadă tot (fără crop) */
+    .imgbox img{
+      width:100%;
+      height:auto;
+      display:block;
+      object-fit: contain;
+      background:#000;
     }
 
-    h1 {
-      margin-top: 0;
+    .card{
+      flex: 1;
+      background:#fff;
+      border-radius:12px;
+      padding:24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+      max-width: 760px;
     }
 
-    .muted {
-      color: #666;
+    h1{ margin:0 0 10px 0; }
+    .muted{ color:#666; }
+
+    /* Responsive: pe telefon, se pune una sub alta */
+    @media (max-width: 900px){
+      .wrap{ flex-direction:column; }
+      .imgbox{ flex: none; width:100%; max-width:520px; }
+      .card{ max-width:none; }
     }
 
-    /* 🔥 FORȚARE CHATBASE DEASUPRA A ORICĂRUI ELEMENT */
+    /* 🔥 Forțăm Chatbase peste orice */
     #chatbase-bubble,
-    iframe[src*="chatbase"] {
+    iframe[src*="chatbase"]{
       position: fixed !important;
-      z-index: 999999 !important;
+      right: 18px !important;
+      bottom: 18px !important;
+      z-index: 2147483647 !important;
     }
   </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <div class="imgbox">
+      <img src="prime.jpg.jpg" alt="Waller Metin2">
+    </div>
 
-  <!-- IMAGINEA -->
-  <img src="prime.jpg.jpg" alt="Waller Metin2" class="hero-img">
-
-  <!-- TEXT -->
-  <div class="container">
     <div class="card">
-      <h1>Waller – Legendă Metin2</h1>
-      <p class="muted">
-        Acesta este un site provizoriu public (GitHub Pages).
-      </p>
+      <h1>Demo Agent AI – Waller</h1>
+      <p class="muted">Site public (GitHub Pages) pentru test.</p>
+
       <p>
-        Agentul AI apare în colțul din dreapta jos.<br>
-        Întreabă despre lore-ul lui Waller, dueluri, rivali sau momente legendare din Metin2.
+        Imaginea e în stânga și se vede complet (fără tăiere).<br>
+        Agentul AI ar trebui să apară în colțul din dreapta jos.
+      </p>
+
+      <p class="muted">
+        Dacă nu apare, e aproape sigur AdBlock/uBlock sau setarea Chat widget OFF în Chatbase.
       </p>
     </div>
   </div>
 
-  <!-- CHATBASE AI -->
+  <!-- Chatbase widget (variantă simplă, mai stabilă) -->
   <script>
-  (function(){
-    if(!window.chatbase || window.chatbase("getState") !== "initialized") {
-      window.chatbase = (...arguments) => {
-        if(!window.chatbase.q) { window.chatbase.q = []; }
-        window.chatbase.q.push(arguments);
-      };
-      window.chatbase = new Proxy(window.chatbase, {
-        get(target, prop) {
-          if (prop === "q") return target.q;
-          return (...args) => target(prop, ...args);
-        }
-      });
-    }
-
-    const onLoad = function() {
-      const script = document.createElement("script");
-      script.src = "https://www.chatbase.co/embed.min.js";
-      script.id = "NRRqNgF6wUjb6EGIy37gg";
-      script.domain = "www.chatbase.co";
-      document.body.appendChild(script);
-    };
-
-    if (document.readyState === "complete") {
-      onLoad();
-    } else {
-      window.addEventListener("load", onLoad);
-    }
-  })();
+    window.chatbase = window.chatbase || function(){ (window.chatbase.q = window.chatbase.q || []).push(arguments) };
   </script>
-
+  <script defer src="https://www.chatbase.co/embed.min.js"
+          id="NRRqNgF6wUjb6EGIy37gg"
+          domain="www.chatbase.co"></script>
 </body>
 </html>
+
