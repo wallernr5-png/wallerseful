@@ -3,25 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Demo Agent AI</title>
+  <title>Waller – Legendă Metin2</title>
 
   <style>
+    /* RESET */
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
+      font-family: Arial, sans-serif;
       background: #f7f7f7;
     }
 
-    /* Imagine mare sus */
+    /* IMAGINEA MARE (HERO) */
     .hero-img {
       width: 100%;
-      max-height: 90vh;
+      height: 90vh;
       object-fit: cover;
       display: block;
+      position: relative;
+      z-index: 1;
     }
 
+    /* CARD TEXT */
     .container {
       padding: 40px;
+      display: flex;
+      justify-content: center;
     }
 
     .card {
@@ -39,35 +45,66 @@
     .muted {
       color: #666;
     }
+
+    /* 🔥 FORȚARE CHATBASE DEASUPRA A ORICĂRUI ELEMENT */
+    #chatbase-bubble,
+    iframe[src*="chatbase"] {
+      position: fixed !important;
+      z-index: 999999 !important;
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- IMAGINEA MARE -->
+  <!-- IMAGINEA -->
   <img src="prime.jpg.jpg" alt="Waller Metin2" class="hero-img">
 
+  <!-- TEXT -->
   <div class="container">
     <div class="card">
-      <h1>Demo Agent AI de Suport</h1>
-
+      <h1>Waller – Legendă Metin2</h1>
       <p class="muted">
         Acesta este un site provizoriu public (GitHub Pages).
       </p>
-
       <p>
-        Agentul AI apare în colțul din dreapta jos.  
-        Întreabă despre program, lore-ul lui Waller sau momente legendare din Metin2.
+        Agentul AI apare în colțul din dreapta jos.<br>
+        Întreabă despre lore-ul lui Waller, dueluri, rivali sau momente legendare din Metin2.
       </p>
     </div>
   </div>
 
-  <!-- Chatbase widget -->
+  <!-- CHATBASE AI -->
   <script>
   (function(){
-    if(!window.chatbase || window.chatbase("getState")!=="initialized"){
-      window.chatbase=(...arguments)=>{
-        if(!window.chatbase.q){window.chatbase.q=[]}
-        window.chatbase.q.push(arguments)
+    if(!window.chatbase || window.chatbase("getState") !== "initialized") {
+      window.chatbase = (...arguments) => {
+        if(!window.chatbase.q) { window.chatbase.q = []; }
+        window.chatbase.q.push(arguments);
       };
-      window.chatbase=new Proxy(window.chatbase
+      window.chatbase = new Proxy(window.chatbase, {
+        get(target, prop) {
+          if (prop === "q") return target.q;
+          return (...args) => target(prop, ...args);
+        }
+      });
+    }
+
+    const onLoad = function() {
+      const script = document.createElement("script");
+      script.src = "https://www.chatbase.co/embed.min.js";
+      script.id = "NRRqNgF6wUjb6EGIy37gg";
+      script.domain = "www.chatbase.co";
+      document.body.appendChild(script);
+    };
+
+    if (document.readyState === "complete") {
+      onLoad();
+    } else {
+      window.addEventListener("load", onLoad);
+    }
+  })();
+  </script>
+
+</body>
+</html>
